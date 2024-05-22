@@ -1,6 +1,6 @@
 // src/index.js
 
-import { setupServer } from "./server";
+import { setupServer } from "./server.js";
 
 const message = 'Hello world';
 
