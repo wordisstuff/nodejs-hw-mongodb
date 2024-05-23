@@ -1,3 +1,8 @@
 export const  ENV_VARS = {
-    PORT:"PORT"
+    PORT: "PORT",
+    MONG_USER: "MONGODB_USER",
+    MONG_PASS: "MONGODB_PASSWORD",
+    MONG_URL:"MONGODB_URL",
+    MONG_DB:"MONGODB_DB"
+
 };
