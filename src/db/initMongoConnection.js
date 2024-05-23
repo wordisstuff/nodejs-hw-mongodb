@@ -14,9 +14,9 @@ export const initMongoConnection = async () => {
         const url = env(MONG_URL);
         const db = env(MONG_DB);
 
-        await mongoose.connect(`mongodb+srv://${user}:${pwd}@${url}/?retryWrites=true&w=majority&appName=Cluster0`);
-
-        console.log(user, pwd, url, db);
+        // await mongoose.connect(`mongodb+srv://${user}:${pwd}@${url}/?retryWrites=true&w=majority&appName=Cluster0`);
+await mongoose.connect('mongodb+srv://wordisstuff:Or9HjLW4QKMsGb5H@cluster0.gwucv3m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+        // console.log(user, pwd, url,  db);
     }
     catch (e) {
         console.log("ERROR", e);
