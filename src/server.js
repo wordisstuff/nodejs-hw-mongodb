@@ -7,6 +7,9 @@ import { ENV_VARS } from './constants/index.js';
 import { notFoundMiddelware } from './middlewares/notFoundMiddleware.js';
 import { errorHandlerMiddleware } from './middlewares/errorHandlerMiddleware.js';
 import { getAllContacts, getContactById } from './services/contacts.js';
+import mongoose from 'mongoose';
+import { validateObjectId } from './middlewares/validateObjectId.js';
+import { checkContact } from './middlewares/checkContact.js';
 
 
 
@@ -37,22 +40,9 @@ export const setupServer = () => {
             data:contacts
         });
     });
-    app.get('/contacts/:contactId', async (req, res) => {
+    app.get('/contacts/:contactId', validateObjectId, checkContact, async (req, res) => {
 
-        const { contactId } = req.params;
-
-        if(!contactId) {
-            return res.status(400).json({
-                status: 400,
-                message:"Contact id is required!"
-            });
-        }
-        if (!contactId.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(404).json({
-                status: 404,
-                message: `Contact ${contactId} not found!`
-            });};
-
+        const { contactId} = req.params;
         const contact = await getContactById(contactId);
 
         res.json({
