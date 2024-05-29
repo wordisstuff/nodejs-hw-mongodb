@@ -5,14 +5,7 @@ export const checkContact = async (req, res, next) => {
     const { contactId } = req.params;
     const contact = await getContactById(contactId);
 
-    if (!contact) {
-      return res.status(400).json({
-        status: 400,
-        message: 'Contact id is required!',
-      });
-    }
-
-    if (!contactId.match(/^[0-9a-fA-F]{24}$/)) {
+    if (!contact && !contactId.match(/^[0-9a-fA-F]{24}$/)) {
       return res.status(404).json({
         status: 404,
         message: `Contact ${contactId} not found!`,
