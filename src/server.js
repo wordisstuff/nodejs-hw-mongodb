@@ -7,9 +7,7 @@ import { ENV_VARS } from './constants/index.js';
 import { notFoundMiddelware } from './middlewares/notFoundMiddleware.js';
 import { errorHandlerMiddleware } from './middlewares/errorHandlerMiddleware.js';
 import { getAllContacts, getContactById } from './services/contacts.js';
-import mongoose from 'mongoose';
 import { validateObjectId } from './middlewares/validateObjectId.js';
-import { checkContact } from './middlewares/checkContact.js';
 
 
 
@@ -40,10 +38,17 @@ export const setupServer = () => {
             data:contacts
         });
     });
-    app.get('/contacts/:contactId', validateObjectId, checkContact, async (req, res) => {
+    app.get('/contacts/:contactId', validateObjectId, async (req, res) => {
 
         const { contactId} = req.params;
         const contact = await getContactById(contactId);
+
+    if (!contact) {
+        return res.status(404).json({
+        status: 404,
+        message: `Contact ${contactId} not found!`,
+        });
+    }
 
         res.json({
             status: 200,
