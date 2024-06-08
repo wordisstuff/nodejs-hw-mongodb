@@ -8,7 +8,7 @@ export const errorHandlerMiddleware = (error, req, res, next) => {
         res.status(error.status).json({
             status: error.status,
             message: error.name,
-            data:{message: "Contact not found!"}
+            data:error
         });
         return;
     };
