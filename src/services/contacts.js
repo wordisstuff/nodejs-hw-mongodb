@@ -12,3 +12,9 @@ export const getContactById = async (id) => {
 
     return contact;
 };
+
+export const postContact = (body) => Contact.create(body);
+
+export const patchContact = (id, body) => Contact.findByIdAndUpdate(id, body, { new: true });
+
+export const deleteContact = (id) => Contact.findByIdAndDelete(id);
