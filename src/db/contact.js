@@ -9,7 +9,7 @@ const contactSchema = new Schema(
         contactType:{type:String, enum:['work', 'home', 'personal'], required:true, default:'personal'},
         createdAt:{Date},
         updatedAt :{Date}
-    }, {timestamps: true}
+    }, {timestamps: true, versionKey: false}
 );
 
 export const Contact = model('contacts',contactSchema);

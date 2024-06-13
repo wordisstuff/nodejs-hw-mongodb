@@ -1,5 +1,4 @@
 import { HttpError } from "http-errors";
-import { isHttpError } from "http-errors";
 
 export const errorHandlerMiddleware = (error, req, res, next) => {
 
